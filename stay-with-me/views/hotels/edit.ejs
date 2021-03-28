@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs', {title: 'Edit A Book'}) %>
+    <br>
+    <a href="/hotels" class="btn btn-primary">Back to List</a>
+    <br> <br>
+    <% if (alert) { %>
+        <% alert.split(',').forEach(el => { %>
+            <div class="alert alert-danger" role="alert">
+                <%= el %>
+            </div>
+            <% }) %>
+                <%  } %>
+                    <form action="/hotels/<%= hotel.id %>/edit" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="<%=hotel.name%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="facility">Facility</label>
+                            <input type="text" name="facility" id="facility" class="form-control" value="<%=hotel.facility.substring(1, hotel.facility.length-1)%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" name="location" id="location" class="form-control" value="<%=hotel.location%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="url">Image URL</label>
+                            <input type="text" name="url" id="url" class="form-control" value="<%=hotel.url%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text" name="price" id="price" class="form-control" value="<%=hotel.price%>">
+                        </div>
+                        <button class="btn btn-success" type="submit">Edit Hotel</button>
+                        <button class="btn btn-danger" type="reset">Reset</button>
+                    </form>
+                    </div>
+                    </body>
+
+                    </html>

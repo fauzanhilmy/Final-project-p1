@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs', {title: 'Your History'}) %>
+<h1 class="text-center">Transaction History</h1>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Booking Date</th>
+            <th>Check Out Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% result.forEach(el =>{ %>
+            <tr>
+                <td><%= el.Hotel.name %> </td>
+                <% let facility = el.Hotel.facility.substring(1, el.Hotel.facility.length-1).split(',') %>
+                <td>
+                    <ul class="list-group">
+                        <% facility.forEach(element => { %>
+                            <li class="list-group-item"><%= element %> </li>
+                        <% }) %> 
+                    </ul>
+                </td> 
+                <td><%= el.checkInDate.toString() %></td>
+                <td><%= el.checkOutDate ? el.checkOutDate.toString() : '-' %> </td>
+                <td>
+                    <a href="/users/<%= username %>/<%= el.Hotel.id %>" class="btn btn-success" <%= el.checkOutDate? '' : 'hidden' %>  >Booking Again</a>
+                    <a href="/users/<%=username%>/<%= el.id %>/return" class="btn btn-primary"<%= el.checkOutDate ? 'hidden' : '' %> >Checkout</a>
+                </td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>
